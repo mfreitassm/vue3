@@ -8,7 +8,6 @@
 <script>
 // @ is an alias to /src
 import EventCard from '../components/EventCard.vue'
-import EventServices from '../services/EventService.js'
 
 export default {
   name: 'EventList',
@@ -17,18 +16,29 @@ export default {
   },
   data() {
     return {
-      events: null,
+      //events: null,
     }
   },
+
+  computed: {
+    events() {
+      return this.$store.state.events
+    },
+  },
+
   created() {
-    EventServices.getEvents()
-      .then((response) => {
-        this.events = response.data
-        //console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // dispatching action
+    this.$store.dispatch('fetchEvents')
+
+    // directly committing
+    // EventServices.getEvents()
+    //   .then((response) => {
+    //     this.events = response.data
+    //     //console.log(response.data)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
   },
 }
 </script>
