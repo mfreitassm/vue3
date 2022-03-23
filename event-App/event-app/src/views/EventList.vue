@@ -28,7 +28,14 @@ export default {
 
   created() {
     // dispatching action
-    this.$store.dispatch('fetchEvents')
+    console.log('Here 1!')
+    this.$store.dispatch('fetchEvents').catch((error) => {
+      console.log('Here 2!')
+      this.$router.push({
+        name: 'ErrorDisplay',
+        params: { error: error },
+      })
+    })
 
     // directly committing
     // EventServices.getEvents()

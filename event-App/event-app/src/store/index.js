@@ -5,9 +5,13 @@ export default createStore({
   state: {
     user: 'Mari Freitas',
     events: [], //state events array
-    event: {},
+    event: null,
   },
-  getters: {},
+  getters: {
+    petFriendlyEvents: (state) => {
+      return state.events.filter((event) => event.petFriendly)
+    },
+  },
   mutations: {
     ADD_EVENT(state, event) {
       state.events.push(event)
@@ -21,35 +25,37 @@ export default createStore({
   },
   actions: {
     createEvent({ commit }, event) {
-      EventService.postEvent(event)
+      return EventService.postEvent(event)
         .then(() => {
           commit('ADD_EVENT', event)
         })
         .catch((error) => {
-          console.log(error)
+          throw error
         })
     },
 
     fetchEvents({ commit }) {
-      EventService.getEvents()
+      return EventService.getEvents()
         .then((response) => {
           commit('SET_EVENTS', response.data)
         })
         .catch((error) => {
-          console.log(error)
+          console.log('HHHH')
+          throw error
         })
     },
+
     fetchEvent({ commit, state }, id) {
       const existingEvent = state.events.find((event) => event.id === id)
       if (existingEvent) {
         commit('SET_EVENT', existingEvent)
       } else {
-        EventService.getEvent(id)
+        return EventService.getEvent(id)
           .then((response) => {
             commit('SET_EVENT', response.data)
           })
           .catch((error) => {
-            console.log(error)
+            throw error
           })
       }
     },

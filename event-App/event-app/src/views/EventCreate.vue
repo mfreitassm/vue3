@@ -82,7 +82,21 @@ export default {
         organizer: this.$store.state.user,
       }
       // dispatching action
-      this.$store.dispatch('createEvent', event)
+      this.$store
+        .dispatch('createEvent', event)
+        .then(() => {
+          this.$router.push({
+            // router to event details page
+            name: 'EventDetails',
+            params: { id: event.id },
+          })
+        })
+        .catch((error) => {
+          this.$router.push({
+            name: 'ErrorDisplay',
+            params: { error: error },
+          })
+        })
 
       // directly committing mutation
       //   EventService.postEvent(event)
