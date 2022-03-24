@@ -1,14 +1,22 @@
 <template>
-  <SimpleForm msg="Welcome to Your Vue.js App" />
+  <div id="app">
+    <SimpleForm v-if="false"/>
+
+    <hr />
+
+    <ComponentsForm />
+  </div>
 </template>
 
 <script>
 import SimpleForm from "./views/SimpleForm.vue";
+import ComponentsForm from "./views/ComponentsForm.vue";
 
 export default {
   name: "App",
   components: {
     SimpleForm,
+    ComponentsForm,
   },
 };
 </script>

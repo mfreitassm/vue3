@@ -10,6 +10,9 @@
 <template>
   <input type="radio" :checked="modelValue === value" :value="value" @change="$emit('update:modelValue', value)" v-bind="$attrs" :id="uuid" />
   <label :for="uuid" v-if="label">{{ label }}</label>
+  <BaseErrorMessage v-if="error" :id="`${uuid}-error`">
+    {{ error }}
+  </BaseErrorMessage>
 </template>
 
 <script>
@@ -28,6 +31,10 @@ export default {
       type: [String, Number],
       required: true,
     },
+    error: {
+      type: String,
+      default: ''
+    }
   },
   setup() {
     const uuid = UniqueID().getID();
