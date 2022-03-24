@@ -6,17 +6,14 @@
       <fieldset>
         <legend>Name & describe your event</legend>
 
-        <BaseInput v-model="event.title" label="Title" type="text" error="This input has an error!"
-/> />
+        <BaseInput v-model="event.title" label="Title" type="text" error="This input has an error!" />
 
-        <BaseInput v-model="event.description" label="Description" type="text" error="This input has an error!"
-/> />
+        <BaseInput v-model="event.description" label="Description" type="text" error="This input has an error!" />
       </fieldset>
       <fieldset>
         <legend>Where is your event?</legend>
 
-        <BaseInput v-model="event.location" label="Location" type="text" error="This input has an error!"
-/> />
+        <BaseInput v-model="event.location" label="Location" type="text" error="This input has an error!" />
       </fieldset>
       <fieldset>
         <legend>Pets</legend>
@@ -39,7 +36,7 @@
         </div>
       </fieldset>
 
-      <button type="submit">Submit</button>
+      <BaseButton type="submit" class="-fill-gradient" something="else" >Submit</BaseButton>
     </form>
     <pre>{{ event }}</pre>
   </div>
