@@ -1,6 +1,9 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <BaseInput label="Email" type="email" v-model="email" :error="emailError" />
+    <!-- <BaseInput label="Email" type="email" v-model="email" :error="emailError" /> -->
+
+    <!-- lazy Loading -->
+    <BaseInput label="Email" type="email" :error="emailError" :modelValue="email" @change="handleChange" />
 
     <BaseInput label="Password" type="password" v-model="password" :error="passwordError" />
 
@@ -36,11 +39,23 @@ export default {
       },
     };
 
-    useForm({
+    //Single Input can be like this
+    // useForm({
+    //   validationSchema: validations,
+    // });
+    // const { value: email, errorMessage: emailError, handleChange } = useField("email");
+    // const { value: password, errorMessage: passwordError } = useField("password");
+
+    //Multiples Inputs can be like this
+    const { setFieldValue } = useForm({
       validationSchema: validations,
     });
     const { value: email, errorMessage: emailError } = useField("email");
     const { value: password, errorMessage: passwordError } = useField("password");
+
+    const handleChange = (event) => {
+      setFieldValue("email", event.target.value);
+    };
 
     return {
       onSubmit,
@@ -48,8 +63,8 @@ export default {
       emailError,
       password,
       passwordError,
+      handleChange,
     };
   },
 };
 </script>
-
