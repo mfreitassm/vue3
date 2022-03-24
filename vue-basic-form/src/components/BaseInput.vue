@@ -1,9 +1,9 @@
 <template>
   <label :for="uuid" v-if="label">{{ label }}</label>
-  <input v-bind="$attrs" :value="modelValue" :placeholder="label" class="field" @input="$emit('update:modelValue', $event.target.value)" :id="uuid" :aria-describedby="error ? `${uuid}-error` : null" :aria-invalid="error ? true : null" />
-  <p v-if="error" class="errorMessage" :id="`${uuid}-error`"  aria-live="assertive">
+  <input v-bind="$attrs" :value="modelValue" :placeholder="label" class="field" @input="$emit('update:modelValue', $event.target.value)" :id="uuid" :aria-describedby="error ? `${uuid}-error` : null" :aria-invalid="error ? true : null" :class="{ error }" />
+  <BaseErrorMessage v-if="error" class="errorMessage" :id="`${uuid}-error`"  aria-live="assertive">
     {{ error }}
-  </p>
+  </BaseErrorMessage>
 </template>
 
 <script>

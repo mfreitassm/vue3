@@ -17,11 +17,17 @@
       },
     }"
     :id="uuid"
+    :aria-describedby="error ? `${uuid}-error` : null"
+    :aria-invalid="error ? true : false"
+    :class="{ error }"
   >
     <option v-for="option in options" :value="option" :key="option" :selected="option === modelValue">
       {{ option }}
     </option>
   </select>
+  <BaseErrorMessage v-if="error" :id="`${uuid}-error`">
+    {{ error }}
+  </BaseErrorMessage>
 </template>
 
 <script>
@@ -39,6 +45,10 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    error: {
+      type: String,
+      default: "",
     },
   },
   setup() {
