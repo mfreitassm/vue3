@@ -6,3 +6,5 @@
 [4.Modal-Teste](https://github.com/mfreitassm/vue3/modal-project).\
 [5.Token Authentication](https://github.com/mfreitassm/vue3/token-authentication).\
 [6.Animating](https://github.com/mfreitassm/vue3/animating).\
+[7.Progressive Web Apps](https://github.com/mfreitassm/vue3/pwa-with-vue).
+
